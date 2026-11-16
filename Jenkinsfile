@@ -80,6 +80,8 @@ pipeline {
         stage("5. Build & Push Docker Images") {
             steps {
                 echo "=== BƯỚC 5: ĐÓNG GÓI VÀ ĐẨY IMAGES LÊN DOCKER HUB ==="
+                sh 'which docker && docker --version'
+                sh 'docker info'
                 script {
                     // Sử dụng đúng credential dockerhub-credentials của bạn
                     withDockerRegistry(credentialsId: 'dockerhub-credentials', toolName: 'docker') {
