@@ -5,16 +5,18 @@ pipeline {
     tools {
         jdk 'jdk21'
         maven 'maven3'
-        nodejs 'node20'
+        nodejs 'NodeJS-20'
     }
     environment {
-        DOCKERHUB_USERNAME = "antony1552006"
+        DOCKERHUB_USERNAME = "hoang2207"
         FRONTEND_IMAGE = "${DOCKERHUB_USERNAME}/resume-frontend"
         BACKEND_IMAGE = "${DOCKERHUB_USERNAME}/resume-backend"
         MONGO_IMAGE = "${DOCKERHUB_USERNAME}/resume-mongodb"
         VERSION = "${version}"
-        GIT_REPO_URL = "https://github.com/ankerman2k6/Resume_Analyser.git"
-        GIT_BRANCH = "An-devops"
+        GIT_REPO_URL = "https://github.com/Darktanyan123/jenkins_test2.git"
+        GIT_BRANCH = "main"
+        JWT_SECRET = credentials('resume-analyser-jwt-secret')
+        
     }
     stages {
         stage("1. Check Code") {
