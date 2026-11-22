@@ -87,11 +87,11 @@ services:
     restart: unless-stopped
     environment:
       - GF_SECURITY_ADMIN_USER=admin
-      - GF_SECURITY_ADMIN_PASSWORD=admin # Đổi mật khẩu bảo mật của bạn
+      - GF_SECURITY_ADMIN_PASSWORD=admin # 
     volumes:
       - grafana_data:/var/lib/grafana
     ports:
-      - "3000:3000"
+      - "3001:3001"
     depends_on:
       - prometheus
     networks:
