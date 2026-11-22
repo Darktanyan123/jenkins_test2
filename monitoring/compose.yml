@@ -33,13 +33,13 @@ services:
       - prometheus
     restart: unless-stopped
   node-exporter:
-  image: prom/node-exporter:latest
-  container_name: node-exporter
-  restart: unless-stopped
-  ports:
+    image: prom/node-exporter:latest
+    container_name: node-exporter
+    restart: unless-stopped
+    ports:
     - "9100:9100"
-  networks:
-    - monitoring # Đổi tên này cho khớp với tên network của prometheus trong compose.yml
+    networks:
+    - resume-network # Đổi tên này cho khớp với tên network của prometheus trong compose.yml
 
 volumes:
   prometheus-data:
