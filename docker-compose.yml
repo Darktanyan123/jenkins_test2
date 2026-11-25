@@ -92,6 +92,7 @@ services:
       - prometheus
     networks:
       - resume-network
+      # 1860 và 11378
 # Volume lưu trữ dữ liệu database
 volumes:
   mongo-data:
