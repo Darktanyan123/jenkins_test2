@@ -99,6 +99,8 @@ services:
 # Volume lưu trữ dữ liệu database
 volumes:
   mongo-data:
+  prometheus_data:
+  grafana_data:
 # Network kết nối 3 container
 networks:
   resume-network:
