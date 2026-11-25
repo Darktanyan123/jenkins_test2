@@ -87,7 +87,7 @@ services:
     volumes:
       - grafana_data:/var/lib/grafana
     ports:
-      - "3002:3002"
+      - "3002:3001"
     depends_on:
       - prometheus
     networks:
