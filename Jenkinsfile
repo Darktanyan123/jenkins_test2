@@ -130,7 +130,7 @@ pipeline {
 
                     echo "Dừng và dọn dẹp container cũ (nếu có)..."
                     docker compose down --remove-orphans || true
-                    docker rm -f resume-backend resume-frontend resume-mongodb 2>/dev/null || true
+                    docker rm -f resume-backend resume-frontend resume-mongodb prometheus grafana node-exporter 2>/dev/null || true
 
                     echo "Khởi chạy container mới bằng images vừa build..."
                     docker compose up -d --force-recreate
