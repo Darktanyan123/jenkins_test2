@@ -19,7 +19,7 @@ services:
   grafana:
     image: grafana/grafana:latest
     ports:
-      - "127.0.0.1:3002:3002"
+      - "127.0.0.1:3001:3000"
     env_file:
       - ./.env
     volumes:
@@ -39,7 +39,7 @@ services:
     ports:
     - "9100:9100"
     networks:
-    - resume-network # Đổi tên này cho khớp với tên network của prometheus trong compose.yml
+    - resume-network 
 
 volumes:
   prometheus-data:

@@ -62,7 +62,7 @@ services:
     extra_hosts:
       - "host.docker.internal:host-gateway" # Giúp container gọi được app chạy trên host Linux
     networks:
-      - monitoring
+      - resume-network
 
   node-exporter:
     image: prom/node-exporter:latest
@@ -79,7 +79,7 @@ services:
     ports:
       - "9100:9100"
     networks:
-      - monitoring
+      - resume-network
 
   grafana:
     image: grafana/grafana:latest
@@ -95,7 +95,7 @@ services:
     depends_on:
       - prometheus
     networks:
-      - monitoring
+      - resume-network
 # Volume lưu trữ dữ liệu database
 volumes:
   mongo-data:
