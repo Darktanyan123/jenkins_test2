@@ -16,7 +16,7 @@ pipeline {
         GIT_REPO_URL = "https://github.com/Darktanyan123/jenkins_test2.git"
         GIT_BRANCH = "main"
         JWT_SECRET = credentials('resume-analyser-jwt-secret')
-        
+        PROMETHEUS_IMAGE = "${DOCKERHUB_USERNAME}/resume-prometheus"
     }
     stages {
         stage("1. Check Code") {
@@ -111,6 +111,14 @@ pipeline {
                                 docker build -t ${MONGO_IMAGE}:${VERSION} -t ${MONGO_IMAGE}:${VERSION_COMMIT} .
                                 docker push ${MONGO_IMAGE}:${VERSION}
                                 docker push ${MONGO_IMAGE}:${VERSION_COMMIT}
+                            """
+                        }
+                        echo "Đang build & push Prometheus Image..."
+                        dir('prometheus-init') {
+                            sh """
+                                docker build -t ${PROMETHEUS_IMAGE}:${VERSION} -t ${PROMETHEUS_IMAGE}:${VERSION_COMMIT} .
+                                docker push ${PROMETHEUS_IMAGE}:${VERSION}
+                                docker push ${PROMETHEUS_IMAGE}:${VERSION_COMMIT}
                             """
                         }
                     }

@@ -48,21 +48,17 @@ services:
       - resume-network
     restart: always
   prometheus:
-    image: prom/prometheus:latest
+    image: ${PROMETHEUS_IMAGE:-hoang2207/resume-prometheus}:${VERSION:-latest}
+    build:
+      context: ./prometheus-init
     container_name: prometheus
-    restart: unless-stopped
-    volumes:
-      - ./prometheus.yml:/etc/prometheus/prometheus.yml
-      - prometheus_data:/prometheus
-    command:
-      - '--config.file=/etc/prometheus/prometheus.yml'
-      - '--storage.tsdb.path=/prometheus'
     ports:
       - "9090:9090"
-    extra_hosts:
-      - "host.docker.internal:host-gateway" # Giúp container gọi được app chạy trên host Linux
+    volumes:
+      - prometheus_data:/prometheus
     networks:
       - resume-network
+    restart: always
 
   node-exporter:
     image: prom/node-exporter:latest
@@ -87,7 +83,7 @@ services:
     restart: unless-stopped
     environment:
       - GF_SECURITY_ADMIN_USER=admin
-      - GF_SECURITY_ADMIN_PASSWORD=admin # 
+      - GF_SECURITY_ADMIN_PASSWORD=admin #
     volumes:
       - grafana_data:/var/lib/grafana
     ports:
@@ -100,8 +96,7 @@ services:
 volumes:
   mongo-data:
   prometheus_data:
-  grafana_data:
-# Network kết nối 3 container
+  grafana_data: # Network kết nối 3 container
 networks:
   resume-network:
     name: resume-network
